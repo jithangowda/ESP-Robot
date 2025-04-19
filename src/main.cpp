@@ -1,84 +1,31 @@
 #include <Arduino.h>
-#include <ESPConnection.h>
 #include <WiFiUdp.h>
+#include <ESPConnection.h>
+#include <MotorControl.h>
 
 ESPConnection connection("ESP32_Robot", "robot123");
 WiFiUDP commandUdp;
 const int COMMAND_PORT = 4212;
 
-// Motor driver pins
-#define IN1 27
-#define IN2 26
-#define IN3 25
-#define IN4 33
-
-void setupMotors()
-{
-  pinMode(IN1, OUTPUT);
-  pinMode(IN2, OUTPUT);
-  pinMode(IN3, OUTPUT);
-  pinMode(IN4, OUTPUT);
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
-}
-
-void stopMotors()
-{
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
-}
-
-void moveForward()
-{
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
-}
-
-void moveBackward()
-{
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
-}
-
-void turnLeft()
-{
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
-}
-
-void turnRight()
-{
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
-}
+MotorControl motorControl; // Create an instance of the MotorControl class
 
 void handleCommand(const String &cmd)
 {
   Serial.print("Command: ");
   Serial.println(cmd);
 
+  motorControl.blinkLED();
+
   if (cmd == "forward")
-    moveForward();
+    motorControl.moveForward();
   else if (cmd == "backward")
-    moveBackward();
+    motorControl.moveBackward();
   else if (cmd == "left")
-    turnLeft();
+    motorControl.turnLeft();
   else if (cmd == "right")
-    turnRight();
+    motorControl.turnRight();
   else if (cmd == "stop")
-    stopMotors();
+    motorControl.stopMotors();
 }
 
 void listenForCommands()
@@ -98,7 +45,7 @@ void listenForCommands()
 void setup()
 {
   connection.begin();
-  setupMotors();
+  motorControl.setupMotors(); // Initialize motors using the MotorControl instance
 
   // Start listening for commands
   commandUdp.begin(COMMAND_PORT);
