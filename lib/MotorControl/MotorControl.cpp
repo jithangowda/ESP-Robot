@@ -42,28 +42,28 @@ void MotorControl::setupMotors()
     digitalWrite(BACK_IN4_BL, LOW);
 
     // Disable motors initially
-    digitalWrite(FRONT_ENA_FL, LOW);
-    digitalWrite(FRONT_ENB_FR, LOW);
-    digitalWrite(BACK_ENA_BR, LOW);
-    digitalWrite(BACK_ENB_BL, LOW);
+    analogWrite(FRONT_ENA_FL, 0); // PWM: Speed = 0
+    analogWrite(FRONT_ENB_FR, 0);
+    analogWrite(BACK_ENA_BR, 0);
+    analogWrite(BACK_ENB_BL, 0);
 }
 
 void MotorControl::stopMotors()
 {
     // Stop all motors by disabling them
-    digitalWrite(FRONT_ENA_FL, LOW);
-    digitalWrite(FRONT_ENB_FR, LOW);
-    digitalWrite(BACK_ENA_BR, LOW);
-    digitalWrite(BACK_ENB_BL, LOW);
+    analogWrite(FRONT_ENA_FL, 0); // PWM: Speed = 0
+    analogWrite(FRONT_ENB_FR, 0);
+    analogWrite(BACK_ENA_BR, 0);
+    analogWrite(BACK_ENB_BL, 0);
 }
 
-void MotorControl::moveForward()
+void MotorControl::moveForward(int speed)
 {
-    // Enable all motors
-    digitalWrite(FRONT_ENA_FL, HIGH);
-    digitalWrite(FRONT_ENB_FR, HIGH);
-    digitalWrite(BACK_ENA_BR, HIGH);
-    digitalWrite(BACK_ENB_BL, HIGH);
+    // Enable all motors with the given speed
+    analogWrite(FRONT_ENA_FL, speed);
+    analogWrite(FRONT_ENB_FR, speed);
+    analogWrite(BACK_ENA_BR, speed);
+    analogWrite(BACK_ENB_BL, speed);
 
     // Front Left Motor Forward
     digitalWrite(FRONT_IN1_FL, HIGH);
@@ -82,13 +82,13 @@ void MotorControl::moveForward()
     digitalWrite(BACK_IN2_BR, LOW);
 }
 
-void MotorControl::moveBackward()
+void MotorControl::moveBackward(int speed)
 {
-    // Enable all motors
-    digitalWrite(FRONT_ENA_FL, HIGH);
-    digitalWrite(FRONT_ENB_FR, HIGH);
-    digitalWrite(BACK_ENA_BR, HIGH);
-    digitalWrite(BACK_ENB_BL, HIGH);
+    // Enable all motors with the given speed
+    analogWrite(FRONT_ENA_FL, speed);
+    analogWrite(FRONT_ENB_FR, speed);
+    analogWrite(BACK_ENA_BR, speed);
+    analogWrite(BACK_ENB_BL, speed);
 
     // Front Left Motor Backward
     digitalWrite(FRONT_IN1_FL, LOW);
@@ -107,13 +107,13 @@ void MotorControl::moveBackward()
     digitalWrite(BACK_IN2_BR, HIGH);
 }
 
-void MotorControl::turnLeft()
+void MotorControl::turnLeft(int speed)
 {
-    // Enable all motors
-    digitalWrite(FRONT_ENA_FL, HIGH);
-    digitalWrite(FRONT_ENB_FR, HIGH);
-    digitalWrite(BACK_ENA_BR, HIGH);
-    digitalWrite(BACK_ENB_BL, HIGH);
+    // Enable all motors with the given speed
+    analogWrite(FRONT_ENA_FL, speed);
+    analogWrite(FRONT_ENB_FR, speed);
+    analogWrite(BACK_ENA_BR, speed);
+    analogWrite(BACK_ENB_BL, speed);
 
     // Front Left Motor Backward
     digitalWrite(FRONT_IN1_FL, LOW);
@@ -132,13 +132,13 @@ void MotorControl::turnLeft()
     digitalWrite(BACK_IN2_BR, LOW);
 }
 
-void MotorControl::turnRight()
+void MotorControl::turnRight(int speed)
 {
-    // Enable all motors
-    digitalWrite(FRONT_ENA_FL, HIGH);
-    digitalWrite(FRONT_ENB_FR, HIGH);
-    digitalWrite(BACK_ENA_BR, HIGH);
-    digitalWrite(BACK_ENB_BL, HIGH);
+    // Enable all motors with the given speed
+    analogWrite(FRONT_ENA_FL, speed);
+    analogWrite(FRONT_ENB_FR, speed);
+    analogWrite(BACK_ENA_BR, speed);
+    analogWrite(BACK_ENB_BL, speed);
 
     // Front Left Motor Forward
     digitalWrite(FRONT_IN1_FL, HIGH);

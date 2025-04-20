@@ -9,10 +9,10 @@ public:
     MotorControl();
     void setupMotors();
     void stopMotors();
-    void moveForward();
-    void moveBackward();
-    void turnLeft();
-    void turnRight();
+    void moveForward(int speed = 200);
+    void moveBackward(int speed = 200);
+    void turnLeft(int speed = 200);
+    void turnRight(int speed = 200);
     void blinkLED();
 
 private:
