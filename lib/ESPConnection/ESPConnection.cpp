@@ -39,19 +39,17 @@ void ESPConnection::blinkLED(int times)
 
 void ESPConnection::sendESPConnectedMessage()
 {
-    static bool messageSent = false; // Static flag to send the message only once
-
+    static bool messageSent = false;
     if (serverFound && !serverIP.isEmpty() && !messageSent)
     {
         WiFiUDP udp;
-        udp.begin(4211); // Connect to a different port for sending messages to the server
+        udp.begin(4211);
         String message = "ESP Connected";
 
-        // Convert the message to a byte array and send it
-        udp.beginPacket(serverIP.c_str(), 4211);                 // Use the server's IP and the server's listening port
-        udp.write((uint8_t *)message.c_str(), message.length()); // Write message as byte array
+        udp.beginPacket(serverIP.c_str(), 4211);
+        udp.write((uint8_t *)message.c_str(), message.length());
         udp.endPacket();
-        messageSent = true; // Mark the message as sent
+        messageSent = true;
         Serial.println("[ESP32] Sent ESP Connected message to server.");
     }
 }
@@ -60,8 +58,8 @@ void ESPConnection::listenForServer()
 {
     if (serverFound)
     {
-        sendESPConnectedMessage(); // Send confirmation message
-        return;                    // Skip listening for further UDP messages
+        sendESPConnectedMessage();
+        return;
     }
 
     char incomingPacket[255];
@@ -85,7 +83,7 @@ void ESPConnection::listenForServer()
             serverFound = true;
 
             blinkLED(3);
-            digitalWrite(LED_BUILTIN, HIGH); // Keep LED ON after server found
+            digitalWrite(LED_BUILTIN, HIGH);
             Serial.println("Connected to server.");
             Serial.print("Server IP: ");
             Serial.println(serverIP);
