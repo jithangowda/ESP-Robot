@@ -7,7 +7,7 @@ ESPConnection connection("ESP32_Robot", "robot123");
 WiFiUDP commandUdp;
 const int COMMAND_PORT = 4212;
 
-MotorControl motorControl; // Create an instance of the MotorControl class
+MotorControl motorControl;
 
 void handleCommand(const String &cmd)
 {
@@ -45,9 +45,8 @@ void listenForCommands()
 void setup()
 {
   connection.begin();
-  motorControl.setupMotors(); // Initialize motors using the MotorControl instance
+  motorControl.setupMotors();
 
-  // Start listening for commands
   commandUdp.begin(COMMAND_PORT);
   Serial.println("Ready to receive movement commands.");
 }
