@@ -1,12 +1,12 @@
-# ESP-CAM-Robot
+# ESP-Robot
 
-This repository contains the PlatformIO project for the ESP32-CAM module used in the robot.
+This repository contains the PlatformIO project for the **ESP32 Development Board** used in the **Hazard Detection Robot** project.
 
 ## How to Use
 
 1. **Clone this repository**:
     ```bash
-    git clone https://github.com/jithangowda/ESP-CAM-Robot.git
+    git clone https://github.com/jithangowda/ESP-Robot.git
     ```
 
 2. **Download and Install Visual Studio Code**:
@@ -20,13 +20,13 @@ This repository contains the PlatformIO project for the ESP32-CAM module used in
     - After installing PlatformIO, open VSCode and click the **PlatformIO** icon in the left sidebar.
     - Click **Open Project** and select the folder where you cloned this repo.
 
-5. **Build and Upload** the project:
-    - In VSCode, click **Build** to compile the code.
-    - Click **Upload** to flash the code to your ESP32-CAM.
+5. **Build and Upload** using PlatformIO interface:
+    - In the PlatformIO toolbar (at the bottom), click **Build** to compile the code.
+    - Once the build is successful, click **Upload** to flash the code to your ESP32.
 
 ## Requirements
 
-- ESP32-CAM Development Board
+- ESP32 Development Board
 - Visual Studio Code
 - PlatformIO Extension
 
