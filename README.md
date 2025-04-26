@@ -24,10 +24,14 @@ This repository contains the PlatformIO project for the **ESP32 Development Boar
     - In the PlatformIO toolbar (at the bottom), click **Build** to compile the code.
     - Once the build is successful, click **Upload** to flash the code to your ESP32.
 
+6. **Connect to Wi-Fi**:
+    - After uploading, the ESP32 will start a temporary Wi-Fi network named **ESP32_Robot**.
+    - Connect to this network using the password: `robot123`.
+    - A configuration page will appear where you can set your home Wi-Fi credentials.
+    - After configuration, the ESP32 will automatically reconnect to your Wi-Fi in future boots.
+
 ## Requirements
 
 - ESP32 Development Board
 - Visual Studio Code
 - PlatformIO Extension
-
----
